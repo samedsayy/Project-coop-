@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 from file_handler import FileHandler
 from product import Product, DiscountedProduct
 class Emarket:
