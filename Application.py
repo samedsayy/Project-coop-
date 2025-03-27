@@ -79,7 +79,7 @@ class Application:
             elif choice == "6":
                 self.apply_discount()
             else:
-                print("Invalid option. Please try again.")
+                print("Invalid option. Please try again .")
 
 if __name__ == "__main__":
     app = Application()
