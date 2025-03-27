@@ -5,7 +5,7 @@ class Application:
         self.__emarket = Emarket()
 
     def help(self):
-        print("Commands:")
+        print("Commands: ")
         print("0: Exit")
         print("1: Check the Store")
         print("2: Search for a Product")

@@ -50,7 +50,7 @@ class Emarket:
         return results
 
     def sort_products_by_price(self):
-        """Return a list of products sorted by price in ascending order"""
+        """Return a list of products sorted by price in ascending order """
         return sorted(self.__products.items(), key=lambda item: item[1].price)
 
     def apply_discount(self, product_name, discount):

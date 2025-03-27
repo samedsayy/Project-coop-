@@ -40,20 +40,3 @@ class Product:
         return isinstance(name, str) and len(name) > 0
     
 
-class DiscountedProduct(Product):
-    def __init__(self, name:str, price: float, amount: int ,discount: float):
-        super().__init__(name,price,amount)
-        self.discount =discount
-
-    def get_final_price(self):
-        return super().get_final_price() * (1-self.discount)
-    
-    def apply_discount(self):
-        final_price = self.get_final_price()
-        print(f"The discounted price for{self.name} is: ${final_price:.2f}")
-    
-    def __str__(self):
-        # Override to display both original and discounted price
-        return (f"{self.name}: Original Price: ${super().price:.2f}, "
-                f"Discounted Price: ${self.get_final_price():.2f}, "
-                f"Available: {self.amount}")

@@ -3,6 +3,7 @@ class FileHandler:
     def __init__(self, filename):
         self.filename = filename
 
+
     def load_phones(self):
         products = {}
         try:
@@ -15,7 +16,7 @@ class FileHandler:
             print(f"Current working directorty: {os.getcwd()}")
 
         except Exception as e:
-            print(f"An error occured while reading the file: {e}")
+            print(f"An error occured while reading the file : {e}")
 
         return products
     
