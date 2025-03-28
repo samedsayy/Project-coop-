@@ -51,7 +51,6 @@ class Application:
 
     def run(self):
         while True:
-            self.help()
             choice = input("Enter your choice: ")
             if choice == "0":
                 print("Exiting application. Goodbye!")

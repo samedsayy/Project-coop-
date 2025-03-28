@@ -1,16 +1,16 @@
 class Product:
     def __init__(self, name: str, price: float, amount:int):
-        self.name = name
+        self.__name = name
         self.__price = price
         self.__amount = amount
     @property
 
     def name(self):
-        return self.name
+        return self.__name
     @name.setter
     def name(self,value):
         if isinstance(value,str) and len(value)>0:
-            self.name = value
+            self.__name = value
         else:
             raise ValueError("Name must not be empty")
 
