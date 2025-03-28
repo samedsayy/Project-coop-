@@ -1,4 +1,7 @@
-#Order class
+#Order infomation
+#Check total price for order
+#Check status,add and price of the current order
+
 import datetime
 from Shopping_cart import Shopping_cart
 class Order():
@@ -22,8 +25,9 @@ class Order():
         Order.order_count += 1
         self.status = "processing"
 
-        #list
-        self.status_list = ["processing", "delivered", "canceled"]
+        #status list
+        self.status_list =["processing","delivered","canceled"]
+
 
     def __str__(self):
         return f"{self._user_id},{self.__order_id},{self.status}"

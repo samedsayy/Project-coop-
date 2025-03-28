@@ -1,3 +1,8 @@
+#User infromation (id, name,mail,phone)
+#phone number and mail are checked valid or not
+#purchase history
+#Create subclass, maybe for special user
+
 
 import os
 from file_handler import FileHandler
@@ -101,8 +106,15 @@ class SpecialUser(User):
         origin_str = super().__str__()
         return f"{origin_str},{self.points}"
     
-    def discount(self,name,price,amount):
-        discount_price = price * 0.97
+    def purchase_history(self,name,price,amount):
+
+        if  price > 100:
+            self.user_rank += 1
+
+        discount_price = price
+
+        if self.user_rank > 10:
+            discount_price = price * 0.97
 
         purchase = super().purchase_history(name,discount_price,amount)
 
@@ -110,32 +122,39 @@ class SpecialUser(User):
 
         return purchase
     
-    def check_bonus(self,name,price,amount):
+    def check_purchase_history(self):
 
-        purchase = super().purchase_history(name, price, amount)
+        parent_history = super().check_purchase_history()
+        
+        total = 0
+        for i in parent_history:
+            purchase_amount = i["total"]
+            total = total + purchase_amount
 
-        if price > 100:
-            self.user_rank += 1
-
-        if self.user_rank > 10:
-            self.add_points(round(purchase["total"] * 0.03))
-
-        return purchase
-
+        new_dict ={
+            "history" : parent_history,
+            "total" : total,
+            "current_points":self.points,
+            "user_rank":self.user_rank
+    
+        }
+        
+        return new_dict
         
 
-
     def add_points(self,new_points):
+        
         self.points += new_points
         return self.points
     
     def use_points(self,points):
         if self.points >= points:
             self.points -= points
-        else:
-            return False
-    
+            return self.points
 
+        elif self.points < points:
+            return "Not enough points"
+    
 
 if __name__ == "__main__":
     
@@ -166,5 +185,48 @@ if __name__ == "__main__":
 
     print(user1 == user2)
     print(user1 == user1)
+
+    #SpecialUser
+    special_user = SpecialUser("NewUser","new@sample.com","000000000")
+
+    print(special_user.user_id)
+    print(special_user.points)
+    print(special_user.user_rank)
+
+    special_user.purchase_history("Apple Mac Pro",999.999 , 1)
+    print(special_user.points)
+    print(special_user.user_rank)
+
+    special_user.purchase_history("Apple Mac Pro",999.999 , 1)
+    purchase_history = special_user.check_purchase_history()
+
+    print(purchase_history["total"])
+    print(purchase_history["current_points"])
+    print(purchase_history["user_rank"])
+
+    special_user.user_rank = 11
+    print(special_user.user_rank)
+
+    discount_test = special_user.purchase_history("Apple Mac Pro",999.999 , 1)
+    #Apply discount
+    print(discount_test["total"])
+
+    add_point_test = special_user.add_points(1000)
+    print(special_user.points)
+    use_point_test = special_user.use_points(500)
+    print(special_user.points)
+    use_point_test = special_user.use_points(25000)
+    print(use_point_test)
+
+    print(user1 == special_user)
+
+    final_condition = special_user.check_purchase_history()
+    print(special_user)
+    print(final_condition["total"])
+    print(final_condition["current_points"])
+    print(final_condition["user_rank"])
+
+
+
 
 
