@@ -1,5 +1,5 @@
 from file_handler import FileHandler
-from product import Product, DiscountedProduct
+from product import Product
 class Emarket:
     def __init__(self, product_file = "list.txt"):
         self.__file_handler = FileHandler(product_file)
