@@ -1,14 +1,12 @@
 from file_handler import FileHandler
 from product import Product
+
 class Emarket:
     def __init__(self, product_file = "list.txt"):
         self.__file_handler = FileHandler(product_file)
         self.__products = {}
         raw_data = self.__file_handler.load_phones()
         for name,details in raw_data.items():
-            if "Discount" in name:
-                self.__products[name] = DiscountedProduct(name,details["price"],details["amount"], discount=0.10)
-            else:
                 self.__products[name] = Product(name, details["price"], details["amount"])
 
     def display_products(self):
@@ -28,7 +26,7 @@ class Emarket:
                 print("Not enough stock.")
                 return
             product.amount = new_amount
-            self.__save_data
+            self.__save_data()
         else:
             print(f"Product {product_name} not found")
 

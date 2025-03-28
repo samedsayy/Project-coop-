@@ -1,4 +1,4 @@
-Apple Mac Pro, 999.999, 20
+Apple Mac Pro, 997.999002, 20
 iPhone 13, 799.99, 50
 iPad Air, 599.99, 30
 MacBook Pro, 1499.99, 15
